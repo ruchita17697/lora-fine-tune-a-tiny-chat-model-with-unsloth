@@ -136,8 +136,13 @@ def format_all_examples(examples):
         formatted.append(format_instruction_example(example))
     return formatted
 
-# Step 12 - build_text_dataset (not yet solved)
-# TODO: implement
+# Step 12 - build_text_dataset
+def build_text_dataset(texts):
+   
+
+        return Dataset.from_dict({
+        "text": texts
+    })
 
 # Step 13 - tokenize_text (not yet solved)
 # TODO: implement
