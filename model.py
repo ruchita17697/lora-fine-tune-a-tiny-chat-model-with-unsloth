@@ -186,7 +186,7 @@ def build_sft_trainer(model, tokenizer, dataset, training_args, max_seq_length=2
     trainer = SFTTrainer(
         model=model,
         train_dataset=dataset,
-        processing_class=tokenizer,   # Use tokenizer for processing
+        tokenizer=tokenizer,   # Use tokenizer for processing
         args=training_args,
         dataset_text_field="text",
         max_seq_length=max_seq_length,
@@ -195,8 +195,11 @@ def build_sft_trainer(model, tokenizer, dataset, training_args, max_seq_length=2
 
     return trainer
 
-# Step 17 - run_sft_training (not yet solved)
-# TODO: implement
+# Step 17 - run_sft_training
+def run_sft_training(trainer):
+    """Run a few SFT steps and return the final training loss as a float."""
+    output = trainer.train()
+    return float(output.training_loss)
 
 # Step 18 - switch_to_inference_mode (not yet solved)
 # TODO: implement
