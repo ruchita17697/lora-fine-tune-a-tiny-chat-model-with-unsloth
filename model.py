@@ -177,8 +177,23 @@ def build_training_arguments(
         fp16=not bf16_supported,
     )
 
-# Step 16 - build_sft_trainer (not yet solved)
-# TODO: implement
+# Step 16 - build_sft_trainer
+from trl import SFTTrainer
+from datasets import Dataset 
+def build_sft_trainer(model, tokenizer, dataset, training_args, max_seq_length=256):
+    """Construct a trl SFTTrainer over dataset['text'] ready to .train()."""
+
+    trainer = SFTTrainer(
+        model=model,
+        train_dataset=dataset,
+        processing_class=tokenizer,   # Use tokenizer for processing
+        args=training_args,
+        dataset_text_field="text",
+        max_seq_length=max_seq_length,
+        packing=False,                # Keep each example as a separate training sample
+    )
+
+    return trainer
 
 # Step 17 - run_sft_training (not yet solved)
 # TODO: implement
